@@ -20,7 +20,6 @@ class PostFactory extends Factory
             'excerpt' => $this->faker->paragraphs(1, true),
             'content' => $this->faker->paragraphs(10, true),
             'published_at' => $this->faker->dateTime('now'),
-
         ];
     }
 }

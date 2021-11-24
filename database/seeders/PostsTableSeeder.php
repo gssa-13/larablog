@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -14,8 +15,15 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
+        Tag::truncate();
         Post::truncate();
 
-        Post::factory()->times(10)->create();
+        $tags = Tag::factory()->count(4)->create();
+
+
+        Post::factory()
+            ->count(10)
+            ->hasAttached($tags)
+            ->create();
     }
 }
