@@ -4,21 +4,21 @@
              with font-awesome or any other icon font library -->
         <li class="nav-header">{{__('tag.admin')}}</li>
         <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
+            <a href="{{route('admin.home')}}" class="nav-link {{ request()->routeIs('admin.home') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-home"></i>
                 <p>{{__('tag.home')}}</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
+            <a href="{{route('admin.dashboard')}}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>{{__('tag.dashboard')}}</p>
             </a>
         </li>
 
         <li class="nav-header">{{__('tag.blog')}}</li>
-        <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
+        <li class="nav-item {{ request()->is('admin/posts*') ? 'menu-open' : '' }}">
+            <a href="javascript:void(0)" class="nav-link {{ request()->is('admin/posts*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                     {{__('tag.posts')}}
@@ -27,13 +27,13 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">
+                    <a href="{{route('admin.posts.index')}}" class="nav-link {{ request()->routeIs('admin.posts.index') ? 'active' : '' }}">
                         <i class="fas fa-th-list nav-icon"></i>
-                        <p>{{__('tag.see_all_posts')}}}</p>
+                        <p>{{__('tag.posts_list')}}</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link">
+                    <a href="{{route('admin.posts.create')}}" class="nav-link {{ request()->routeIs('admin.posts.create') ? 'active' : '' }}">
                         <i class="fas fa-feather-alt nav-icon"></i>
                         <p>{{__('tag.write_post')}}</p>
                     </a>

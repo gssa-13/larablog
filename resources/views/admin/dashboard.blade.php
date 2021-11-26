@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Dashboard
+    {{__('tag.dashboard')}}
 @stop
 
 @section('breadcrumbs')

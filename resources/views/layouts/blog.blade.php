@@ -86,7 +86,7 @@
         <!-- Actions -->
         <section>
             <ul class="actions stacked">
-                <li><a href="#" class="button large fit">Log In</a></li>
+                <li><a href="{{route('login')}}" class="button large fit">{{__('tag.log_in')}}</a></li>
             </ul>
         </section>
 
