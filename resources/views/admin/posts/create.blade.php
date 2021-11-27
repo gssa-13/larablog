@@ -1,12 +1,14 @@
 @extends('layouts.admin')
 
 @push('css_after')
+    <!-- summernote -->
+    <link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="/admin/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-@enpush
+@endpush
 
 @section('title')
 {{__('tag.create_post')}}
@@ -19,7 +21,8 @@
 @stop
 
 @section('content')
-    <form>
+    <form method="POST" action="{{route('admin.posts.store')}}">
+        @csrf
         <div class="container-fluid">
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
@@ -48,11 +51,17 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <x-label for="title" :value="__('tag.post_title')" />
-                                        <x-input id="title" type="text" name="title" :value="old('title')" placeholder="{{__('tag.post_title')}}" required/>
+                                        <x-input id="title" class="@error('title') is-invalid @enderror" type="text" name="title" :value="old('title')" placeholder="{{__('tag.post_title')}}" required/>
+                                        @error('title')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group @error('content') is-invalid @enderror">
                                         <x-label for="content" :value="__('tag.post_content')" />
-                                        <textarea id="content" class="form-control form-control-border border-width-2" rows="10" placeholder="{{__('tag.enter')}}"></textarea>
+                                        <textarea id="content" name="content" rows="20" placeholder="{{__('tag.enter')}}">{{old('content')}}</textarea>
+                                        @error('content')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
@@ -71,16 +80,37 @@
                                     </div>
                                     <div class="form-group">
                                         <x-label for="category" :value="__('tag.category')" />
-                                        <select class="form-control select2bs4" style="width: 100%;" required>
-                                            <option value="" selected="selected">{{__('tag.select_an_option')}}</option>
+                                        <select name="category" class="form-control select2bs4 @error('category') is-invalid @enderror" style="width: 100%;" required>
+                                            <option value="">{{__('tag.select_an_option')}}</option>
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                                <option value="{{$category->id}}"
+                                                        {{ old('category') == $category->id ? 'selected' : '' }}
+                                                >{{$category->name}}</option>
                                             @endforeach
                                         </select>
+                                        @error('category')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <x-label for="tags" :value="__('tag.tags')" />
+                                        <select id="tags" name="tags[]" class="select2bs4 @error('category') is-invalid @enderror" multiple="multiple" data-placeholder="{{__('tag.select_an_options')}}" style="width: 100%;">
+                                            @foreach($tags as $tag)
+                                                <option value="{{$tag->id}}"
+                                                        {{ collect(old('$tags'))->contains($tag->id) ? 'selected' : '' }}
+                                                >{{$tag->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('tags')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <x-label for="excerpt" :value="__('tag.post_excerpt')" />
-                                        <textarea id="excerpt" class="form-control form-control-border border-width-2" rows="2" placeholder="{{__('tag.enter')}}"></textarea>
+                                        <textarea id="excerpt" name="excerpt" class="form-control form-control-border border-width-2  @error('content') is-invalid @enderror" rows="2" placeholder="{{__('tag.enter')}}" required>{{old('excerpt')}}</textarea>
+                                        @error('excerpt')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <x-button class="btn-success">
@@ -107,6 +137,8 @@
 @stop
 
 @push('js_after')
+    <!-- Summernote -->
+    <script src="/admin/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- Select2 -->
     <script src="/admin/plugins/select2/js/select2.full.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
@@ -114,7 +146,16 @@
     <script src="/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
         $(function () {
+            // Summernote
+            $('#content').summernote({
+                tabSize: 2,
+                height: 235,
+                minHeight: 200,
+                maxHeight: 340
+            })
+            // tempusdominus
             $('#published_at').datetimepicker();
+            // Select2
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
             })

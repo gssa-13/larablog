@@ -154,6 +154,50 @@
                             <i class="fas fa-th-large"></i>
                         </a>
                     </li>
+                    <li class="nav-item dropdown user-menu">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <img src="/admin/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
+                            <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <!-- User image -->
+                            <li class="user-header bg-primary">
+                                <img src="/admin/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+                                <p>
+                                    {{ Auth::user()->name }} - Web Developer
+                                    <small>Member since Nov. 2012</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{route('logout')}}" class="btn btn-default btn-flat float-right"
+                                   onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                                    {{__('tag.logout')}}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.navbar -->
@@ -168,16 +212,6 @@
 
                 <!-- Sidebar -->
                 <div class="sidebar">
-                    <!-- Sidebar user (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="/admin/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                        </div>
-                        <div class="info">
-                            <a href="javascript:void(0)" class="d-block">{{ Auth::user()->name }}</a>
-                        </div>
-                    </div>
-
                     <!-- SidebarSearch Form -->
                     {{--
                     <div class="form-inline">
@@ -255,6 +289,18 @@
         <script src="/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
         <!-- AdminLTE App -->
         <script src="/admin/js/adminlte.min.js"></script>
+        <script>
+            $(function () {
+                @if(session()->has('success'))
+                $(document).Toasts('create', {
+                    class: 'bg-success',
+                    title: '{{__('tag.success')}}',
+                    subtitle: '{{__('tag.success_sub')}}',
+                    body: '{{session('success')}}'
+                })
+                @endif
+            });
+        </script>
         @stack('js_after')
     </body>
 </html>

@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::latest('published_at')->get();
+        $posts = Post::published()->get();
 
         return view('welcome', compact('posts'));
     }

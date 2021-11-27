@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'success'       => 'Transaccion realizada con exito',
+    'success_sub'   => 'Exito',
     'home'          => 'Inicio',
     'dashboard'     => 'Tablero',
     'save'          => 'Guardar',
@@ -8,6 +10,7 @@ return [
     'update'        => 'Actualizar',
     'enter'         => 'Introduzca su texto aqui...',
     'select_an_option' => 'Seleccione una opcion...',
+    'select_an_options' => 'Seleccione las opciones...',
     'id'            => 'ID',
     'actions'       => 'Acciones',
     'blog'          => 'Blog',
@@ -23,6 +26,9 @@ return [
     'post_excerpt'  => 'Extracto del Articulo',
     'post_content'  => 'Contenido del Articulo',
     'published_at'  => 'Fecha de publicacion',
-    'example_date'  => '2022-04-25'
+    'example_date'  => '2022-04-25',
+    'tags'          => 'Etiquetas',
+    'tag'           => 'Etiqueta',
+    'admin'         => 'Admin'
 
 ];
