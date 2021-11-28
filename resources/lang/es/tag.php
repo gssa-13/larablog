@@ -29,6 +29,5 @@ return [
     'example_date'  => '2022-04-25',
     'tags'          => 'Etiquetas',
     'tag'           => 'Etiqueta',
-    'admin'         => 'Admin'
-
+    'admin'         => 'Admin',
 ];

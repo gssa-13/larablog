@@ -14,4 +14,9 @@ class BlogController extends Controller
 
         return view('welcome', compact('posts'));
     }
+
+    public function show(Post $post)
+    {
+        return view('blog.show', compact('post'));
+    }
 }

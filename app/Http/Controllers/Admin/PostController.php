@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -52,6 +53,7 @@ class PostController extends Controller
 
         $post = new Post;
         $post->title = $request->input('title');
+        $post->url = Str::slug($request->input('title'));
         $post->content = $request->input('content');
         $post->excerpt = $request->input('excerpt');
         $post->category_id = $request->input('category');

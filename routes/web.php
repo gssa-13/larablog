@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\BlogController;
 
 Route::get('/', [ BlogController::class, '__invoke' ]);
+Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
     Route::get('/home', [HomeController::class, '__invoke'])
@@ -27,7 +28,6 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
         ->name('dashboard');
 
     Route::resource('posts', PostController::class);
-
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
