@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="/admin/plugins/dropzone/min/dropzone.min.css">
 @endpush
 
 @section('title')
@@ -114,6 +116,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <div class="dropzone"></div>
+                                    </div>
+                                    <div class="form-group">
                                         <x-button class="btn-success">
                                             {{ __('tag.save') }}
                                         </x-button>
@@ -145,7 +150,32 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="/admin/plugins/moment/moment.min.js"></script>
     <script src="/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- dropzonejs -->
+    <script src="/admin/plugins/dropzone/min/dropzone.min.js"></script>
     <script>
+        //Start DropzoneJS
+        Dropzone.autoDiscover = false;
+
+        var myDropzone = new Dropzone('.dropzone', { // Make the whole body a dropzone
+            url: "{{ route('admin.photos.store', $post) }}", // Set the url
+            acceptedFiles: 'image/*',
+            maxFilesize: 5,
+            maxFiles: 4,
+            paramName: 'photo',
+            thumbnailWidth: 80,
+            thumbnailHeight: 80,
+            parallelUploads: 20,
+            dictDefaultMessage: "Arrastra los archivos aquí para subirlos",
+            headers: {
+                'X-CSRF-TOKEN':'{{ csrf_token() }}'
+            }
+        });
+        myDropzone.on('error', function (file, res) {
+            let msg = res.errors.photo[0];
+            $('.dz-error-message:last > span').text(msg);
+        });
+
+
         $(function () {
             // Summernote
             $('#content').summernote({
@@ -159,7 +189,7 @@
             // Select2
             $('.select2bs4').select2({
                 theme: 'bootstrap4'
-            })
+            });
         });
     </script>
 @endpush

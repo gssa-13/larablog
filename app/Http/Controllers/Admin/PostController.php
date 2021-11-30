@@ -104,7 +104,7 @@ class PostController extends Controller
 
         $post->tags()->sync($request->input('tags'));
 
-        return  back()->with('success', 'Tu publicacion ha sido guardada.');
+        return  redirect()->route('admin.posts.edit', $post)->with('success', 'Tu publicacion ha sido guardada.');
     }
 
     /**

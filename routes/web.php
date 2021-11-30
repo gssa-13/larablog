@@ -13,8 +13,8 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\DashboardController;
-
 use App\Http\Controllers\BlogController;
 
 Route::get('/', [ BlogController::class, '__invoke' ]);
@@ -28,6 +28,8 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
         ->name('dashboard');
 
     Route::resource('posts', PostController::class);
+
+    Route::post('/photos/{post}', [PhotoController::class, 'store'])->name('photos.store');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
