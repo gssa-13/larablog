@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin.posts.create')}}" class="nav-link {{ request()->routeIs('admin.posts.create') ? 'active' : '' }}">
+                    <a href="javascript:void(0);" class="nav-link {{ request()->routeIs('admin.posts.create') ? 'active' : '' }}" data-toggle="modal" data-target="#modal-default">
                         <i class="fas fa-feather-alt nav-icon"></i>
                         <p>{{__('tag.write_post')}}</p>
                     </a>

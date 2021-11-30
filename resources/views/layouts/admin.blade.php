@@ -302,5 +302,6 @@
             });
         </script>
         @stack('js_after')
+        @include('admin.posts.create')
     </body>
 </html>

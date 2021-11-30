@@ -21,7 +21,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Select2 (Default Theme)</h3>
+                <h3 class="card-title">Ver todos los posts</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -34,6 +34,11 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                <button class="btn btn-success btn-flat float-right" data-toggle="modal" data-target="#modal-default">
+                    {{__('tag.write_post')}}
+                    <i class="fas fa-plus-circle ml-1"></i>
+                </button>
+
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -69,11 +74,11 @@
             </div>
         </div>
         <!-- /.card -->
-
     </div>
 @stop
 
 @push('js_after')
+
     <!-- DataTables  & Plugins -->
     <script src="/admin/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
