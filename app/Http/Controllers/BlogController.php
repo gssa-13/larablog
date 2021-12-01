@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::published()->get();
+        $posts = Post::published()->paginate(15);
 
         return view('welcome', compact('posts'));
     }
