@@ -43,10 +43,7 @@ class PostController extends Controller
     {
         $this->validate($request, ['title' => 'required']);
 
-        $post = Post::create([
-            'title' => $request->input('title'),
-            'url' => Str::slug($request->input('title'))
-        ]);
+        $post = Post::create($request->only('title'));
 
         return redirect()->route('admin.posts.edit', $post);
     }
@@ -92,7 +89,6 @@ class PostController extends Controller
         ]);
 
         $post->title = $request->input('title');
-        $post->url = Str::slug($request->input('title'));
         $post->content = $request->input('content');
         $post->excerpt = $request->input('excerpt');
         $post->category_id = $request->input('category');
