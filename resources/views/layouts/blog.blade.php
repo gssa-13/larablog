@@ -11,6 +11,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="/css/main.css" />
+        @stack('css_after')
     </head>
     <body class="is-preload">
 
@@ -102,6 +103,6 @@
         <script src="/js/breakpoints.min.js"></script>
         <script src="/js/util.js"></script>
         <script src="/js/main.js"></script>
-
+        @stack('js_after')
     </body>
 </html>

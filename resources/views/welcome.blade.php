@@ -19,7 +19,15 @@
                     <a href="javascript:void(0);" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
                 </div>
             </header>
-            <a href="{{ route('blog.show', $post) }}" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+
+            @if( $post->photos->count() === 1)
+                <a href="{{ route('blog.show', $post) }}" class="image featured">
+                    <img src="{{ $post->photos->first()->url }}" alt="" />
+                </a>
+            @elseif( $post->photos->count() > 1 )
+                @include('blog.carousel')
+            @endif
+            <br>
             <p>{{$post->excerpt}}</p>
             <footer>
                 <ul class="actions">
@@ -488,3 +496,11 @@
 
     </section>
 @stop
+
+@push('css_after')
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+@endpush
+
+@push('js_after')
+    <script src="/js/bootstrap.min.js"></script>
+@endpush

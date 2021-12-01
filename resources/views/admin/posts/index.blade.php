@@ -42,24 +42,27 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>{{__('tag.id')}}</th>
-                            <th>{{__('tag.title')}}</th>
-                            <th>{{__('tag.excerpt')}}</th>
-                            <th>{{__('tag.actions')}}</th>
+                            <th style="width: 5%;">{{__('tag.id')}}</th>
+                            <th style="width: 30%;">{{__('tag.title')}}</th>
+                            <th style="width: 50%;">{{__('tag.excerpt')}}</th>
+                            <th style="width: 15%;">{{__('tag.actions')}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($posts as $post)
                             <tr>
-                                <td>{{$post->id}}</td>
+                                <td class="text-center">{{$post->id}}</td>
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->excerpt}}</td>
                                 <td>
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-flat btn-primary">
+                                    <a href="{{ route('blog.show', $post) }}" class="btn btn-sm btn-flat btn-secondary" target="_blank">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-flat btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a href="javascript:void(0)" class="btn btn-sm btn-flat btn-danger">
-                                        <i class="far fa-times-circle fa-lg"></i>
+                                        <i class="far fa-times-circle"></i>
                                     </a>
                                 </td>
                             </tr>

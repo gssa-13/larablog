@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Photo;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -41,7 +42,12 @@ class PhotoController extends Controller
         $this->validate($request, [
             'photo' => ['required', 'image', 'max:5120']
         ]);
-        $photo = $request->file('photo');
+        $photo = $request->file('photo')->store('public');
+
+        Photo::create([
+            'url' => Storage::url($photo),
+            'post_id' => $post->id
+        ]);
     }
 
     /**
