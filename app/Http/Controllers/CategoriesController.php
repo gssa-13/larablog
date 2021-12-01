@@ -10,7 +10,7 @@ class CategoriesController extends Controller
     public function __invoke(Category $category)
     {
         return view('welcome', [
-            'title' => "Publicaciones de la categoria {$category->name}",
+            'title' => "Publicaciones de la categoria $category->name",
             'posts' => $category->posts()->published()->paginate()
         ]);
     }

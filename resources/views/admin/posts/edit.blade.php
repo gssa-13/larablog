@@ -217,7 +217,8 @@
             $('#published_at').datetimepicker();
             // Select2
             $('.select2bs4').select2({
-                theme: 'bootstrap4'
+                theme: 'bootstrap4',
+                tags: true
             });
         });
     </script>
