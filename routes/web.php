@@ -30,6 +30,7 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
     Route::resource('posts', PostController::class);
 
     Route::post('/photos/{post}', [PhotoController::class, 'store'])->name('photos.store');
+    Route::delete('/photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
