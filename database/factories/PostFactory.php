@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class PostFactory extends Factory
 {
@@ -18,6 +19,7 @@ class PostFactory extends Factory
         return [
             'category_id' => Category::factory(),
             'title' => $title,
+            'url' => Str::slug($title),
             'excerpt' => $this->faker->paragraphs(1, true),
             'content' => $this->faker->paragraphs(10, true),
             'published_at' => $this->faker->dateTime('now'),

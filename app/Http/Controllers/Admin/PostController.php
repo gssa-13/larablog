@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\StorePostRequest;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -19,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest('id')->get();
 
         return view('admin.posts.index', compact('posts'));
     }
