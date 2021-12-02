@@ -8,7 +8,8 @@ use App\Models\Post;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+
+use App\Http\Requests\Admin\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -79,37 +80,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'content' => 'required',
-            'category' => 'required',
-            'excerpt' => 'required'
-        ]);
+        $post->update( $request->all() );
 
-        $post->title = $request->input('title');
-        $post->content = $request->input('content');
-        $post->excerpt = $request->input('excerpt');
-        $post->category_id = Category::find($cat = $request->input('category'))
-                            ? $cat
-                            : Category::create(['name' => $cat])->id;
-        $post->published_at =
-            $request->has('published_at')
-                ? Carbon::parse($request->input('published_at'))
-                : null ;
-        $post->save();
-
-        $tags = [];
-
-        foreach ($request->input('tags') as $tag)
-        {
-            $tags[] = Tag::find($tag)
-                ? $tag
-                : Tag::create(['name' => $tag])->id ;
-        }
-
-        $post->tags()->sync($tags);
+        $post->syncTags($request->input('tags'));
 
         return  redirect()->route('admin.posts.edit', $post)->with('success', 'Tu publicacion ha sido guardada.');
     }

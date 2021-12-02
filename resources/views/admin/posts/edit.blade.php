@@ -112,16 +112,16 @@
                                             <x-input id="published_at" type="text" name="published_at" :value="old('published_at', $post->published_at ? $post->published_at->format('m/d/Y H:i') : null)" placeholder="{{__('tag.example_date')}}" class="datetimepicker-input" data-toggle="datetimepicker" data-target="#published_at"/>
                                         </div>
                                         <div class="form-group">
-                                            <x-label for="category" :value="__('tag.category')" />
-                                            <select name="category" class="form-control select2bs4 @error('category') is-invalid @enderror" style="width: 100%;" required>
+                                            <x-label for="category_id" :value="__('tag.category')" />
+                                            <select id="category_id" name="category_id" class="form-control select2bs4 @error('category_id') is-invalid @enderror" style="width: 100%;" required>
                                                 <option value="">{{__('tag.select_an_option')}}</option>
                                                 @foreach($categories as $category)
                                                     <option value="{{$category->id}}"
-                                                        {{ old('category', $post->category_id) == $category->id ? 'selected' : '' }}
+                                                        {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}
                                                     >{{$category->name}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category')
+                                            @error('category_id')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                             @enderror
                                         </div>
