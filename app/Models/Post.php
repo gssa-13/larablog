@@ -22,6 +22,16 @@ class Post extends Model
         return 'url';
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($post) {
+            $post->tags()->detach();
+            $post->photos->each->delete();
+        });
+    }
+
     public function setTitleAttribute($title)
     {
         $this->attributes['title'] = $title;

@@ -61,9 +61,14 @@
                                     <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-flat btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-flat btn-danger">
-                                        <i class="far fa-times-circle"></i>
-                                    </a>
+                                    <form method="POST" style="display: inline;"
+                                          action="{{ route('admin.posts.destroy', $post) }}">
+                                        @csrf @method('DELETE')
+                                        <button class="btn btn-sm btn-flat btn-danger"
+                                        onclick="return confirm('Seguro desea eliminar esta publicacion?')">
+                                            <i class="far fa-times-circle"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

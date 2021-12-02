@@ -86,7 +86,7 @@ class PostController extends Controller
 
         $post->syncTags($request->input('tags'));
 
-        return  redirect()->route('admin.posts.edit', $post)->with('success', 'Tu publicacion ha sido guardada.');
+        return  redirect()->route('admin.posts.edit', $post)->with('success', 'La publicacion ha sido guardada.');
     }
 
     /**
@@ -97,6 +97,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return  redirect()->route('admin.posts.index', $post)->with('success', 'La publicacion ha sido eliminada.');
     }
 }
