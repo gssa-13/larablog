@@ -42,7 +42,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['title' => 'required']);
+        $this->validate($request, ['title' => 'required | min:5']);
 
         $post = Post::create($request->only('title'));
 

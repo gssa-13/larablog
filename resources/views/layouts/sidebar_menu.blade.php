@@ -33,10 +33,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link {{ request()->routeIs('admin.posts.create') ? 'active' : '' }}" data-toggle="modal" data-target="#modal-default">
-                        <i class="fas fa-feather-alt nav-icon"></i>
-                        <p>{{__('tag.write_post')}}</p>
-                    </a>
+                    @if( request()->is('admin/posts/*') )
+                        <a href="{{ route('admin.posts.index', '#create') }}" class="nav-link
+                            {{ request()->routeIs('admin.posts.create') ? 'active' : '' }}">
+                            <i class="fas fa-feather-alt nav-icon"></i>
+                            <p>{{__('tag.write_post')}}</p>
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" class="nav-link
+                            {{ request()->routeIs('admin.posts.create') ? 'active' : '' }}"
+                           data-toggle="modal" data-target="#modal-default">
+                            <i class="fas fa-feather-alt nav-icon"></i>
+                            <p>{{__('tag.write_post')}}</p>
+                        </a>
+                    @endif
                 </li>
             </ul>
         </li>

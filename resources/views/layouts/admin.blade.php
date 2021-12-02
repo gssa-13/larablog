@@ -280,6 +280,12 @@
         </div>
         <!-- ./wrapper -->
 
+
+
+        @unless( request()->is('admin/posts/*') )
+            @include('admin.posts.create')
+        @endunless
+        
         @stack('js_before')
         <!-- jQuery -->
         <script src="/admin/plugins/jquery/jquery.min.js"></script>
@@ -302,6 +308,6 @@
             });
         </script>
         @stack('js_after')
-        @include('admin.posts.create')
+
     </body>
 </html>

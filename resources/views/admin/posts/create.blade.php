@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal-default">
-    <form method="POST" action="{{route('admin.posts.store')}}">
+    <form method="POST" action="{{route('admin.posts.store', "#create")}}">
         @csrf
         <div class="modal-dialog">
             <div class="modal-content">
@@ -11,7 +11,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <x-input id="title" class="@error('title') 'is-invalid' @enderror" type="text" name="title" :value="old('title')" placeholder="{{__('tag.post_title')}}" required/>
+                        <x-input
+                            id="input_title_modal"
+                            class=" @error('title') is-invalid @enderror"
+                            type="text" name="title" :value="old('title')"
+                            placeholder="{{__('tag.post_title')}}" autofocus
+                            required/>
                         @error('title')
                         <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -28,3 +33,20 @@
     </form>
 </div>
 <!-- /.modal -->
+
+@push('js_after')
+    <script>
+        if( window.location.hash === "#create") {
+            $('#modal-default').modal('show');
+        }
+
+        $('#modal-default').on('hide.bs.modal', function() {
+            window.location.hash = "#";
+        });
+
+        $('#modal-default').on('shown.bs.modal', function() {
+            $('#input_title_modal').focus();
+            window.location.hash = "#create";
+        });
+    </script>
+@endpush
