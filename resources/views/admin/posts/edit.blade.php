@@ -42,7 +42,7 @@
                                                 style="position: absolute; margin-left: -2.3em;">
                                             <i class="fas fa-minus-circle"></i>
                                         </button>
-                                        <img class="img-lg" src="{{$photo->url}}">
+                                        <img class="img-lg" src="{{ Storage::disk('posts')->url($photo->url) }}">
                                     </div>
                                 </form>
                             </div>

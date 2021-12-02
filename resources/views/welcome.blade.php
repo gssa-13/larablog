@@ -28,7 +28,7 @@
 
             @if( $post->photos->count() === 1)
                 <a href="{{ route('blog.show', $post) }}" class="image featured">
-                    <img src="{{ $post->photos->first()->url }}" alt="" />
+                    <img src="{{ Storage::disk('posts')->url($post->photos->first()->url) }}" alt="" />
                 </a>
             @elseif( $post->photos->count() > 1 )
                 @include('blog.carousel')

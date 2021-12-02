@@ -11,7 +11,9 @@
     <div class="carousel-inner">
         @foreach($post->photos as $photo)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                <img src="{{ url($photo->url) }}" class="d-block w-100" alt="...">
+                <img src="{{ Storage::disk('posts')->url($photo->url) }}"
+                    class="d-block w-100" alt="...">
+
             </div>
         @endforeach
     </div>
