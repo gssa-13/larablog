@@ -16,7 +16,7 @@
                     @endforeach
                 </div>
                 <div class="meta">
-                    <time class="published" datetime="2022-01-01">{{$post->published_at->diffForHumans()}}</time>
+                    <time class="published" datetime="2022-01-01">{{ optional($post->published_at)->diffForHumans()}}</time>
                     <a href="javascript:void(0);" class="author"><span class="name">Jane Doe</span><img src="/images/avatar.jpg" alt="" /></a>
                 </div>
             </header>
@@ -31,7 +31,7 @@
             {!! $post->content  !!}
             <footer>
                 <ul class="stats">
-                    <li><a href="javascript:void(0);">{{ $post->category->name }}</a></li>
+                    <li><a href="javascript:void(0);">{{ optional($post->category)->name }}</a></li>
                     <li><a href="javascript:void(0);" class="icon solid fa-heart">28</a></li>
                     <li><a href="javascript:void(0);" class="icon solid fa-comment">128</a></li>
                 </ul>

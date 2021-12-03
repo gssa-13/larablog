@@ -19,7 +19,12 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TagsController;
 
-Route::get('/', BlogController::class);
+Route::get('/', [BlogController::class, 'home'])->name('home');
+Route::get('/about', [BlogController::class, 'about'])->name('about');
+Route::get('/archive', [BlogController::class, 'archive'])->name('archive');
+Route::get('/contact', [BlogController::class, 'contact'])->name('contact');
+
+
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/tags/{tag}', TagsController::class)->name('blog.tags.show');
 Route::get('/blog/categories/{category}', CategoriesController::class)->name('blog.categories.show');
@@ -29,8 +34,7 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
     Route::get('/home', [HomeController::class, '__invoke'])
         ->name('home');
 
-    Route::get('/dashboard', [DashboardController::class, '__invoke'])
-        ->name('dashboard');
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::resource('posts', PostController::class);
 

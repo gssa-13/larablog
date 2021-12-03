@@ -185,6 +185,11 @@ input, select, textarea {
 			color: #2ebaae !important;
 		}
 
+        .header-active {
+            border-bottom-color: transparent;
+            color: #2ebaae !important;
+        }
+
 			a:hover:before {
 				color: #2ebaae !important;
 			}

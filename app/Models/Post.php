@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content', 'excerpt', 'publisehd_at', 'category_id'
+        'title', 'content', 'excerpt', 'published_at', 'category_id'
     ];
 
     protected  $dates = ['published_at'];
@@ -26,12 +26,16 @@ class Post extends Model
     {
         parent::boot();
 
+        // para cada eliminacion del modelo
+        // son eliminadas las relaciones de tags
         static::deleting(function($post) {
             $post->tags()->detach();
             $post->photos->each->delete();
         });
     }
 
+    // Cada vez que se efectue en el model el evento create
+    // sera generada una url unica
     public static function create(array $attributes = [])
     {
         $post = static::query()->create($attributes);
@@ -97,5 +101,11 @@ class Post extends Model
         return $query->whereNotNull('published_at')
             ->where('published_at', '<=', Carbon::now())
             ->latest('published_at');
+    }
+
+    // Verifica si una publicacion es de acceso publico
+    public function isPublished()
+    {
+        return ! is_null($this->published_at) && $this->published_at < today();
     }
 }
