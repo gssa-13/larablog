@@ -21,7 +21,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest('id')->get();
+//        $posts = Post::latest('id')->get();
+        $posts = Auth::user()->posts;
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -32,6 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', new Post );
         $categories = Category::all();
         $tags = Tag::all();
         return view('admin.posts.create', compact('categories', 'tags'));
@@ -46,10 +48,7 @@ class PostController extends Controller
     {
         $this->validate($request, ['title' => 'required | min:5']);
 
-        $post = Post::create([
-            'title' => $request->input('title'),
-            'user_id' => Auth::id()
-        ]);
+        $post = Post::create($request->all());
 
         return redirect()->route('admin.posts.edit', $post);
     }
@@ -73,9 +72,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::all();
-        $tags = Tag::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        $this->authorize('view', $post);
+
+        return view('admin.posts.edit', [
+            'post' => $post,
+            'tags' => Tag::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -87,6 +90,8 @@ class PostController extends Controller
      */
     public function update(StorePostRequest $request, Post $post)
     {
+        $this->authorize('update', $post);
+
         $post->update( $request->all() );
 
         $post->syncTags($request->input('tags'));
@@ -102,6 +107,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
+
         $post->delete();
 
         return  redirect()->route('admin.posts.index', $post)->with('success', 'La publicacion ha sido eliminada.');

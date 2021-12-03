@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -38,6 +39,8 @@ class Post extends Model
     // sera generada una url unica
     public static function create(array $attributes = [])
     {
+        $attributes['user_id'] = Auth::id();
+
         $post = static::query()->create($attributes);
 
         $post->generateUrl();
