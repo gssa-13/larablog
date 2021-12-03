@@ -8,18 +8,7 @@
     <!-- Main -->
     <div id="main">
         <article class="post">
-            <header>
-                <div class="title">
-                    <h2><a href="javascript:void(0)">{{ $post->title }}</a></h2>
-                    @foreach($post->tags as $tag)
-                        <p>#{{$tag->name}}</p>
-                    @endforeach
-                </div>
-                <div class="meta">
-                    <time class="published" datetime="2022-01-01">{{ optional($post->published_at)->diffForHumans()}}</time>
-                    <a href="javascript:void(0);" class="author"><span class="name">Jane Doe</span><img src="/images/avatar.jpg" alt="" /></a>
-                </div>
-            </header>
+            @include('blog.partials.header-post')
             @if( $post->photos->count() === 1)
                 <span class="image featured">
                     <img src="{{ $post->photos->first()->url }}" alt="" />
@@ -30,11 +19,7 @@
             <br>
             {!! $post->content  !!}
             <footer>
-                <ul class="stats">
-                    <li><a href="javascript:void(0);">{{ optional($post->category)->name }}</a></li>
-                    <li><a href="javascript:void(0);" class="icon solid fa-heart">28</a></li>
-                    <li><a href="javascript:void(0);" class="icon solid fa-comment">128</a></li>
-                </ul>
+                @include('blog.partials.footer-stats')
             </footer>
         </article>
     </div>

@@ -11,20 +11,7 @@
         @foreach($posts as $post)
         <!-- Post -->
             <article class="post">
-                <header>
-                    <div class="title">
-                        <h2><a href="{{ route('blog.show', $post) }}">{{$post->title}}</a></h2>
-                        <br>
-                        @foreach($post->tags as $tag)
-                            <a style="color: inherit; font-size: inherit;"
-                               href="{{ route('blog.tags.show', $tag) }}">#{{$tag->name}}</a>
-                        @endforeach
-                    </div>
-                    <div class="meta">
-                        <time class="published" datetime="2015-11-01">{{$post->published_at->diffForHumans()}}</time>
-                        <a href="javascript:void(0);" class="author"><span class="name">Jane Doe</span><img src="/images/avatar.jpg" alt="" /></a>
-                    </div>
-                </header>
+                @include('blog.partials.header-post')
 
                 @if( $post->photos->count() === 1)
                     <a href="{{ route('blog.show', $post) }}" class="image featured">
@@ -39,16 +26,7 @@
                     <ul class="actions">
                         <li><a href="{{ route('blog.show', $post) }}" class="button large">{{__('blog.read_more')}}</a></li>
                     </ul>
-                    <ul class="stats">
-                        <li>
-                            <a style="color: inherit; font-size: inherit;"
-                               href="{{ route('blog.categories.show', $post->category) }}">
-                                {{ $post->category->name }}
-                            </a>
-                        </li>
-                        <li><a href="javascript:void(0);" class="icon solid fa-heart">28</a></li>
-                        <li><a href="javascript:void(0);" class="icon solid fa-comment">128</a></li>
-                    </ul>
+                    @include('blog.partials.footer-stats')
                 </footer>
             </article>
         @endforeach

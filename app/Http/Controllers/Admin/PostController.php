@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\StorePostRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -45,7 +46,10 @@ class PostController extends Controller
     {
         $this->validate($request, ['title' => 'required | min:5']);
 
-        $post = Post::create($request->only('title'));
+        $post = Post::create([
+            'title' => $request->input('title'),
+            'user_id' => Auth::id()
+        ]);
 
         return redirect()->route('admin.posts.edit', $post);
     }

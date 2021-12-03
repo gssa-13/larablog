@@ -11,7 +11,7 @@ class BlogController extends Controller
 {
     public function home()
     {
-        $posts = Post::published()->paginate(15);
+        $posts = Post::published()->paginate(10);
 
         return view('blog.home', compact('posts'));
     }
