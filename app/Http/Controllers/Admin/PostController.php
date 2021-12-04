@@ -21,8 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-//        $posts = Post::latest('id')->get();
-        $posts = Auth::user()->posts;
+        $posts = Post::allowedPosts()->get();
 
         return view('admin.posts.index', compact('posts'));
     }

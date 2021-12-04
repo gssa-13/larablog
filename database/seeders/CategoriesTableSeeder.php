@@ -16,6 +16,6 @@ class CategoriesTableSeeder extends Seeder
     {
         Category::truncate();
 
-        Category::factory()->times(5)->create();
+        Category::factory()->count(5)->create();
     }
 }

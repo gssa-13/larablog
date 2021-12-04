@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,8 +15,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        Role::truncate();
         User::truncate();
 
-        User::factory()->create();
+        $adminRole = Role::create(['name' => 'Admin']);
+        $writerRole = Role::create(['name' => 'Writer']);
+
+        $admin = User::factory()->create();
+        $admin->assignRole($adminRole);
+
+        $writer = User::factory()->create();
+        $writer->assignRole($writerRole);
     }
 }

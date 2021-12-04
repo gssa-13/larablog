@@ -18,12 +18,12 @@ class PostsTableSeeder extends Seeder
         Tag::truncate();
         Post::truncate();
 
-        $tags = Tag::factory()->count(4)->create();
-
+//        $tags = Tag::factory()->count(4)->create();
 
         Post::factory()
             ->count(10)
-            ->hasAttached($tags)
+            ->hasAttached(Tag::factory()->count(4))
+//            ->hasAttached($tags)
             ->create();
     }
 }
