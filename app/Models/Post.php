@@ -113,7 +113,7 @@ class Post extends Model
 
     public function scopeAllowedPosts($query)
     {
-        if ( Auth::user()->hasRole('Admin') ) {
+        if ( Auth::user()->can('view', $this) ) {
             return $query;
         } else {
             return $query->where('user_id' , Auth::id());
