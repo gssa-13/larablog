@@ -7,13 +7,13 @@
 @endpush
 
 @section('title')
-    {{__('tag.posts_list')}}
+    {{__('tag.users_list')}}
 @stop
 
 @section('breadcrumbs')
-    <li class="breadcrumb-item"><a href="javascript:void(0)">{{__('tag.blog')}}</a></li>
-    <li class="breadcrumb-item"><a href="javascript:void(0)">{{__('tag.posts')}}</a></li>
-    <li class="breadcrumb-item active">{{__('tag.posts_list')}}</li>
+    <li class="breadcrumb-item"><a href="javascript:void(0)">{{__('tag.admin')}}</a></li>
+    <li class="breadcrumb-item"><a href="javascript:void(0)">{{__('tag.users')}}</a></li>
+    <li class="breadcrumb-item active">{{__('tag.users_list')}}</li>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Ver todos los posts</h3>
+                <h3 class="card-title">Ver todos los users</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -35,7 +35,7 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <button class="btn btn-success btn-flat float-right" data-toggle="modal" data-target="#modal-default">
-                    {{__('tag.write_post')}}
+                    {{__('tag.register_user')}}
                     <i class="fas fa-plus-circle ml-1"></i>
                 </button>
 
@@ -43,29 +43,31 @@
                     <thead>
                         <tr>
                             <th style="width: 5%;">{{__('tag.id')}}</th>
-                            <th style="width: 30%;">{{__('tag.title')}}</th>
-                            <th style="width: 50%;">{{__('tag.excerpt')}}</th>
+                            <th style="width: 30%;">{{__('tag.name')}}</th>
+                            <th style="width: 35%;">{{__('tag.email')}}</th>
+                            <th style="width: 15%;">{{__('tag.roles')}}</th>
                             <th style="width: 15%;">{{__('tag.actions')}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($posts as $post)
+                        @foreach($users as $user)
                             <tr>
-                                <td class="text-center">{{$post->id}}</td>
-                                <td>{{$post->title}}</td>
-                                <td>{{$post->excerpt}}</td>
+                                <td class="text-center">{{$user->id}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{$user->getRoleNames()->implode(', ')}}</td>
                                 <td>
-                                    <a href="{{ route('blog.show', $post) }}" class="btn btn-sm btn-flat btn-secondary" target="_blank">
+                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-sm btn-flat btn-secondary">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-flat btn-primary">
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-flat btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <form method="POST" style="display: inline;"
-                                          action="{{ route('admin.posts.destroy', $post) }}">
+                                          action="{{ route('admin.users.destroy', $user) }}">
                                         @csrf @method('DELETE')
                                         <button class="btn btn-sm btn-flat btn-danger"
-                                        onclick="return confirm('Seguro desea eliminar esta publicacion?')">
+                                        onclick="return confirm('Seguro desea eliminar a este usuario?')">
                                             <i class="far fa-times-circle"></i>
                                         </button>
                                     </form>

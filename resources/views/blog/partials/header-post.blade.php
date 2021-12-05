@@ -6,7 +6,7 @@
     </div>
     <div class="meta">
         <time class="published" datetime="2015-11-01">
-            {{ optional($post->published_at)->diffForHumans()}}
+            {{ optional($post->published_at)->diffForHumans() }}
         </time>
         <a href="javascript:void(0);" class="author">
             <span class="name">{{ $post->user->name }}</span>

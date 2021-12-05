@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
+
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TagsController;
@@ -36,7 +38,8 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    Route::resource('posts', PostController::class);
+    Route::resource('posts', PostController::class, ['except' => 'show']);
+    Route::resource('users', UserController::class);
 
     Route::post('/photos/{post}', [PhotoController::class, 'store'])->name('photos.store');
     Route::delete('/photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');

@@ -12,6 +12,7 @@ return [
     'enter'         => 'Introduzca su texto aqui...',
     'select_an_option' => 'Seleccione una opcion...',
     'select_an_options' => 'Seleccione las opciones...',
+    'documentation' => 'Documentacion',
     'id'            => 'ID',
     'actions'       => 'Acciones',
     'blog'          => 'Blog',
@@ -32,4 +33,22 @@ return [
     'tags'          => 'Etiquetas',
     'tag'           => 'Etiqueta',
     'admin'         => 'Admin',
+    ////////// users //////////
+    'users'         => 'Usuarios',
+    'user'          => 'Usuario',
+    'user_profile'  => 'Perfil de usuario',
+    'users_list'    => 'Lista de usuarios',
+    'name'          => 'Nombre',
+    'role'          => 'Rol',
+    'roles'         => 'Roles',
+    'email'         => 'Email',
+    'register_user' => 'Registrar usuario',
+    'shared_at'     => 'Compartido: ',
+    'permissions'   => 'Permisos',
+    'permission'    => 'Permiso',
+    'user_has_not_additional_permissions' => 'El Usuario no tiene permisios adicionales',
+    'user_has_not_roles' => 'El Usuario no tiene Roles asignados',
+    'user_has_not_posts' => 'El Usuario no tiene Posts creados'
+
+
 ];
