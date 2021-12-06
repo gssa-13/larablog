@@ -34,10 +34,10 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <button class="btn btn-success btn-flat float-right" data-toggle="modal" data-target="#modal-default">
+                <a href="{{ route('admin.users.create') }}" class="btn btn-success btn-flat float-right">
                     {{__('tag.register_user')}}
                     <i class="fas fa-plus-circle ml-1"></i>
-                </button>
+                </a>
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>

@@ -48,7 +48,15 @@ return [
     'permission'    => 'Permiso',
     'user_has_not_additional_permissions' => 'El Usuario no tiene permisios adicionales',
     'user_has_not_roles' => 'El Usuario no tiene Roles asignados',
-    'user_has_not_posts' => 'El Usuario no tiene Posts creados'
-
+    'user_has_not_posts' => 'El Usuario no tiene Posts creados',
+    'edit_user'     => 'Editar Usuario',
+    'user_name'     => 'Nombre del usuario',
+    'password'      => 'Contrasena',
+    'password_confirmation' => 'Confirmar contrasena',
+    'personal_data' => 'Datos personales',
+    'roles_n_permissions' => 'Roles y permisos',
+    'update_user' => 'Actualizar Usuario',
+    'update_roles' => 'Actualizar Roles',
+    'update_permissions' => 'Actualizar Permisos'
 
 ];

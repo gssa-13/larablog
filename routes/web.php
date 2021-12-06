@@ -13,13 +13,15 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\PhotoController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserPermissionController;
 
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\TagsController;
 
 Route::get('/', [BlogController::class, 'home'])->name('home');
 Route::get('/about', [BlogController::class, 'about'])->name('about');
@@ -40,6 +42,8 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
 
     Route::resource('posts', PostController::class, ['except' => 'show']);
     Route::resource('users', UserController::class);
+    Route::put('users/{user}/roles', UserRoleController::class)->name('users.roles.update');
+    Route::put('users/{user}/permissions', UserPermissionController::class)->name('users.permissions.update');
 
     Route::post('/photos/{post}', [PhotoController::class, 'store'])->name('photos.store');
     Route::delete('/photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');
