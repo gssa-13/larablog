@@ -50,8 +50,13 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
 
     Route::resource('posts', PostController::class, ['except' => 'show']);
     Route::resource('users', UserController::class);
-    Route::put('users/{user}/roles', UserRoleController::class)->name('users.roles.update');
-    Route::put('users/{user}/permissions', UserPermissionController::class)->name('users.permissions.update');
+    Route::middleware('role:Admin')
+        ->put('users/{user}/roles', UserRoleController::class)
+        ->name('users.roles.update');
+
+    Route::middleware('role:Admin')
+        ->put('users/{user}/permissions', UserPermissionController::class)
+        ->name('users.permissions.update');
 
     Route::post('/photos/{post}', [PhotoController::class, 'store'])->name('photos.store');
     Route::delete('/photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');

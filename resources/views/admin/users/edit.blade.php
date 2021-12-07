@@ -96,18 +96,28 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
-                                        @method('PUT')
-                                        @csrf
-                                        <div class="form-group">
-                                            @include('admin.roles.partials.checkboxes')
-                                        </div>
-                                        <div class="form-group">
-                                            <x-button class="btn-success">
-                                                {{ __('tag.update_roles') }}
-                                            </x-button>
-                                        </div>
-                                    </form>
+                                    @role('Admin')
+                                        <form method="POST" action="{{ route('admin.users.roles.update', $user) }}">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="form-group">
+                                                @include('admin.roles.partials.checkboxes')
+                                            </div>
+                                            <div class="form-group">
+                                                <x-button class="btn-success">
+                                                    {{ __('tag.update_roles') }}
+                                                </x-button>
+                                            </div>
+                                        </form>
+                                    @else
+                                        <ul>
+                                        @forelse($user->roles as $role)
+                                            <li class="list-group-item">{{ $role->name }}</li>
+                                        @empty
+                                            <li class="list-group-item">Sin permisos asignados</li>
+                                        @endforelse
+                                        </ul>
+                                    @endrole
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -118,6 +128,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
+                                    @role('Admin')
                                     <form method="POST" action="{{ route('admin.users.permissions.update', $user) }}">
                                         @method('PUT')
                                         @csrf
@@ -130,6 +141,15 @@
                                             </x-button>
                                         </div>
                                     </form>
+                                    @else
+                                        <ul>
+                                        @forelse($user->permissions as $permission)
+                                            <li class="list-group-item">{{ $permission->name }}</li>
+                                        @empty
+                                            <li class="list-group-item">Sin permisos asignados</li>
+                                        @endforelse
+                                        </ul>
+                                    @endrole
                                 </div>
                                 <!-- /.card-body -->
                             </div>
