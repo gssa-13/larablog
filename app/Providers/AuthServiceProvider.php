@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Policies\PostPolicy;
 use App\Policies\UserPolicy;
@@ -21,7 +23,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Post::class => PostPolicy::class,
         User::class => UserPolicy::class,
-        Role::class => RolePolicy::class
+        Role::class => RolePolicy::class,
+        Permission::class => PermissionPolicy::class
     ];
 
     /**

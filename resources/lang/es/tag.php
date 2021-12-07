@@ -63,6 +63,9 @@ return [
     'guard_name'    => 'Guard',
     'role_name'     => 'Nombre del Rol',
     'edit_role'     => 'Editar Rol',
-    'display_name'  => 'Nombre a mostrar'
+    'display_name'  => 'Nombre a mostrar',
+    'permissions_list' => 'Lista de permisos',
+    'permission_name' => 'Nombre del permiso',
+    'edit_permission' => 'Editar Permiso'
 
 ];

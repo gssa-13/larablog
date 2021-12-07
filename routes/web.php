@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PermissionController;
+
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -32,26 +34,19 @@ Route::get('/about', [BlogController::class, 'about'])->name('about');
 Route::get('/archive', [BlogController::class, 'archive'])->name('archive');
 Route::get('/contact', [BlogController::class, 'contact'])->name('contact');
 
-
-Route::get('/email', function() {
-   return new LoginCredentials(User::first(), 'password');
-});
-
-
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/tags/{tag}', TagsController::class)->name('blog.tags.show');
 Route::get('/blog/categories/{category}', CategoriesController::class)->name('blog.categories.show');
 
 
 Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
-    Route::get('/home', [HomeController::class, '__invoke'])
-        ->name('home');
-
+    Route::get('/home', [HomeController::class, '__invoke'])->name('home');
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::resource('posts', PostController::class, ['except' => 'show']);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class, ['except' => 'show']);
+    Route::resource('permissions', PermissionController::class, ['onlu' => ['index', 'edit', 'update']]);
     Route::middleware('role:Admin')
         ->put('users/{user}/roles', UserRoleController::class)
         ->name('users.roles.update');
