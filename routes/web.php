@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -50,6 +51,7 @@ Route::name('admin.')->middleware(['auth'])->prefix('admin')->group(function (){
 
     Route::resource('posts', PostController::class, ['except' => 'show']);
     Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class, ['except' => 'show']);
     Route::middleware('role:Admin')
         ->put('users/{user}/roles', UserRoleController::class)
         ->name('users.roles.update');

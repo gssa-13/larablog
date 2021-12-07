@@ -57,6 +57,12 @@ return [
     'roles_n_permissions' => 'Roles y permisos',
     'update_user' => 'Actualizar Usuario',
     'update_roles' => 'Actualizar Roles',
-    'update_permissions' => 'Actualizar Permisos'
+    'update_permissions' => 'Actualizar Permisos',
+    'roles_list'    => 'Lista de roles',
+    'register_role' => 'Registrar Rol',
+    'guard_name'    => 'Guard',
+    'role_name'     => 'Nombre del Rol',
+    'edit_role'     => 'Editar Rol',
+    'display_name'  => 'Nombre a mostrar'
 
 ];

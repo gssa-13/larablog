@@ -90,7 +90,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="form-group">
-                                        @include('admin.permissions.partials.checkboxes')
+                                        @include('admin.permissions.partials.checkboxes', ['model' => $user])
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

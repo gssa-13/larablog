@@ -133,7 +133,7 @@
                                         @method('PUT')
                                         @csrf
                                         <div class="form-group">
-                                            @include('admin.permissions.partials.checkboxes')
+                                            @include('admin.permissions.partials.checkboxes', ['model' => $user])
                                         </div>
                                         <div class="form-group">
                                             <x-button class="btn-success">

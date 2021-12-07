@@ -12,7 +12,7 @@
                 <div class="title">
                     <h2><a href="javascript:void(0);">403 Forbidden</a></h2>
                     <p>
-                        <a href="javascript:void(0);">This action is unauthorized. </a>
+                        <a href="javascript:void(0);">This action is unauthorized.</a>
                     </p>
                 </div>
                 <div class="meta">
@@ -23,7 +23,14 @@
 
 
             <content>
-                This action is unauthorized.
+                {{ $exception->getMessage() }}
+
+                <br>
+                <br>
+
+                <a href="{{ url()->previous() }}">
+                    <span class="name">{{ __('blog.return_previous_page') }}</span>
+                </a>
             </content>
 
         </article>
