@@ -35,7 +35,7 @@ class UserController extends Controller
     public function create()
     {
         $this->authorize('create', new User);
-        
+
         $user = new User;
         $roles = Role::with('permissions')->get();
         $permissions = Permission::pluck('name', 'id');
@@ -77,7 +77,8 @@ class UserController extends Controller
         UserWasCreated::dispatch($user, $data['password']);
 
         // Respondemos al usuario
-        return redirect()->route('admin.users.index')->with('success', "El usuario $user->name ha sido registrado");
+        return redirect()->route('admin.users.index')
+            ->with('success', "El usuario $user->name ha sido registrado");
 
     }
 
@@ -107,7 +108,10 @@ class UserController extends Controller
         $roles = Role::with('permissions')->get();
         $permissions = Permission::pluck('name', 'id');
 
-        return view ('admin.users.edit', compact('user', 'roles','permissions'));
+        return view (
+            'admin.users.edit',
+            compact('user', 'roles','permissions')
+        );
     }
 
     /**
@@ -123,7 +127,8 @@ class UserController extends Controller
 
         $user->update( $request->validated() );
 
-        return back()->with('success', 'Usuario Actualizado');
+        return redirect()->route('admin.users.edit', $user)
+            ->with('success', 'Usuario Actualizado');
     }
 
     /**
@@ -134,6 +139,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $this->authorize('delete', $user);
+
+        $user->delete();
+
+        return redirect()->route('admin.users.index')
+            ->with('success', 'El usuario ha sido eliminado correctamente');
     }
 }

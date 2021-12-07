@@ -46,6 +46,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        // para cada eliminacion del modelo
+        // son eliminadas las relaciones de tags
+        static::deleting(function($user) {
+            $user->posts->each->delete();
+        });
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);

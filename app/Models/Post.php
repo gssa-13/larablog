@@ -35,6 +35,7 @@ class Post extends Model
         });
     }
 
+
     // Cada vez que se efectue en el model el evento create
     // sera generada una url unica
     public static function create(array $attributes = [])
