@@ -121,6 +121,16 @@ class Post extends Model
         }
     }
 
+    public function scopeByYearAndMonth($query)
+    {
+        return $query->selectRaw('year(published_at)  year')
+            ->selectRaw('month(published_at)  month')
+            ->selectRaw('monthname(published_at)  monthname')
+            ->selectRaw('count(*) posts')
+            ->groupBy('year', 'month', 'monthname')
+            ->orderBy('year', 'desc');
+    }
+
     // Verifica si una publicacion es de acceso publico
     public function isPublished()
     {

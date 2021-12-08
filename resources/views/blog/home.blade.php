@@ -8,7 +8,7 @@
         @endif
         <br>
 
-        @foreach($posts as $post)
+        @forelse($posts as $post)
         <!-- Post -->
             <article class="post">
                 @include('blog.partials.header-post')
@@ -29,19 +29,43 @@
                     @include('blog.partials.footer-stats')
                 </footer>
             </article>
-        @endforeach
 
-    <!-- Pagination -->
-        {{ $posts->links() }}
+        @empty
+                <article class="post">
+                    <header>
+                        <div class="title">
+                            <h2>Sin publicaciones</h2>
+                            <br>
+                        </div>
+                        <div class="meta">
+                            <time class="published" datetime="2015-11-01">
+                                {{ now() }}
+                            </time>
+                            <a href="javascript:void(0);" class="author">
+                                <span class="name">System</span>
+                            </a>
+                            <a href="javascript:void(0);" class="author">
+                                <img src="/images/avatar.jpg" alt="" />
+                            </a>
+                        </div>
+                    </header>
+                    <br>
+                    Aun no hay publicaciones
+                    <footer></footer>
+                </article>
+        @endforelse
+
+        <!-- Pagination -->
+        {{ $posts->appends( request()->all() )->links() }}
 
     </div>
 
     <!-- Sidebar -->
-    <section id="sidebar">
+    {{-- <section id="sidebar">
 
         <!-- Intro -->
         <section id="intro">
-            <a href="javascript:void(0);" class="logo"><img src="/images/logo.jpg" alt="" /></a>
+            <a href="javascript:void(0);" class="logo"><img src="/images/logo.jpg" alt=""/></a>
             <header>
                 <h2>Future Imperfect</h2>
                 <p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
@@ -167,7 +191,7 @@
             <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
         </section>
 
-    </section>
+    </section> --}}
 @stop
 
 @push('css_after')
