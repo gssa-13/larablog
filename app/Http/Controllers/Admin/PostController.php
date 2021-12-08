@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\StorePostRequest;
@@ -21,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::allowedPosts()->get();
+        $posts = Post::all();
 
         return view('admin.posts.index', compact('posts'));
     }

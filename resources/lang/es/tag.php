@@ -66,6 +66,7 @@ return [
     'display_name'  => 'Nombre a mostrar',
     'permissions_list' => 'Lista de permisos',
     'permission_name' => 'Nombre del permiso',
-    'edit_permission' => 'Editar Permiso'
+    'edit_permission' => 'Editar Permiso',
+    'profile'       => 'Perfil'
 
 ];

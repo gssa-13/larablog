@@ -46,8 +46,9 @@
                                 </li>
                                 @endif
                             </ul>
-
-                            <a href="javascript:void(0);" class="btn btn-primary btn-block"><b>{{ __('tag.edit') }}</b></a>
+                            <a href="#settings" class="btn btn-primary btn-block">
+                                <b>{{ __('tag.edit') }}</b>
+                            </a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -78,7 +79,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#roles" data-toggle="tab">{{ __('tag.post') }}</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#roles" data-toggle="tab">{{ __('tag.posts') }}</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">{{ __('tag.roles') }}</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                             </ul>

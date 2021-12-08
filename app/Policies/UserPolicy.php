@@ -71,7 +71,7 @@ class UserPolicy
      */
     public function delete(User $authUser, User $user)
     {
-        return ($authUser->id === $user->id || $authUser->hasPermissionTo('Delete users'));
+        return $authUser->hasPermissionTo('Delete users');
     }
 
     /**

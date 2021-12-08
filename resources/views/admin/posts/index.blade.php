@@ -50,27 +50,35 @@
                     </thead>
                     <tbody>
                         @foreach($posts as $post)
+                            @can('view', $post)
                             <tr>
                                 <td class="text-center">{{$post->id}}</td>
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->excerpt}}</td>
                                 <td>
-                                    <a href="{{ route('blog.show', $post) }}" class="btn btn-sm btn-flat btn-secondary" target="_blank">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-flat btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form method="POST" style="display: inline;"
-                                          action="{{ route('admin.posts.destroy', $post) }}">
-                                        @csrf @method('DELETE')
-                                        <button class="btn btn-sm btn-flat btn-danger"
-                                        onclick="return confirm('Seguro desea eliminar esta publicacion?')">
-                                            <i class="far fa-times-circle"></i>
-                                        </button>
-                                    </form>
+                                    @can('view', $post)
+                                        <a href="{{ route('blog.show', $post) }}" class="btn btn-sm btn-flat btn-secondary" target="_blank">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    @endcan
+                                    @can('update', $post)
+                                        <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-sm btn-flat btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    @endcan
+                                    @can('delete', $post)
+                                        <form method="POST" style="display: inline;"
+                                              action="{{ route('admin.posts.destroy', $post) }}">
+                                            @csrf @method('DELETE')
+                                            <button class="btn btn-sm btn-flat btn-danger"
+                                            onclick="return confirm('Seguro desea eliminar esta publicacion?')">
+                                                <i class="far fa-times-circle"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
+                            @endcan
                         @endforeach
                     </tbody>
                 </table>

@@ -19,7 +19,7 @@ class PermissionPolicy
      */
     public function view(User $user, Permission $permissionn)
     {
-        return $user->hasRole('Admin');
+        return $user->hasRole('Admin') || $user->hasPermissionTo('View permissions');
     }
 
     /**
@@ -31,7 +31,7 @@ class PermissionPolicy
      */
     public function update(User $user, Permission $permission)
     {
-        return $user->hasRole('Admin');
+        return $user->hasRole('Admin') || $user->hasPermissionTo('Update permissions');
     }
 
 }

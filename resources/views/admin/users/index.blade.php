@@ -34,11 +34,12 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <a href="{{ route('admin.users.create') }}" class="btn btn-success btn-flat float-right">
-                    {{__('tag.register_user')}}
-                    <i class="fas fa-plus-circle ml-1"></i>
-                </a>
-
+                @can('create', $users->first())
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-success btn-flat float-right">
+                        {{__('tag.register_user')}}
+                        <i class="fas fa-plus-circle ml-1"></i>
+                    </a>
+                @endcan
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -57,20 +58,27 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->getRoleNames()->implode(', ')}}</td>
                                 <td>
-                                    <a href="{{ route('admin.users.show', $user) }}" class="btn btn-sm btn-flat btn-secondary">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-flat btn-primary">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form method="POST" style="display: inline;"
-                                          action="{{ route('admin.users.destroy', $user) }}">
-                                        @csrf @method('DELETE')
-                                        <button class="btn btn-sm btn-flat btn-danger"
-                                        onclick="return confirm('Seguro desea eliminar a este usuario?')">
-                                            <i class="far fa-times-circle"></i>
-                                        </button>
-                                    </form>
+                                    @can('view', $user)
+                                        <a href="{{ route('admin.users.show', $user) }}" class="btn btn-sm btn-flat btn-secondary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    @endcan
+
+                                    @can('update', $user)
+                                        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-flat btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    @endcan
+                                    @can('delete', $user)
+                                        <form method="POST" style="display: inline;"
+                                              action="{{ route('admin.users.destroy', $user) }}">
+                                            @csrf @method('DELETE')
+                                            <button class="btn btn-sm btn-flat btn-danger"
+                                            onclick="return confirm('Seguro desea eliminar a este usuario?')">
+                                                <i class="far fa-times-circle"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

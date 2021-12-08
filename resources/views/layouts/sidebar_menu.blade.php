@@ -15,41 +15,54 @@
                 <p>{{__('tag.dashboard')}}</p>
             </a>
         </li>
-
-        <li class="nav-header">{{__('tag.blog')}}</li>
-        <li class="nav-item {{ setOpenAdminMenuRoute(['admin.posts.index']) }}">
-            <a href="javascript:void(0)" class="nav-link {{ setActiveAdminRoute(['admin.posts.index']) }}">
-                <i class="nav-icon fas fa-book"></i>
+        <li class="nav-header">{{__('tag.admin')}}</li>
+        @can('view', new Spatie\Permission\Models\Permission)
+        <li class="nav-item {{ setOpenAdminMenuRoute(['admin.permissions.index', 'admin.permissions.edit']) }}">
+            <a href="javascript:void(0)" class="nav-link {{ setActiveAdminRoute(['admin.permissions.index', 'admin.permissions.edit']) }}">
+                <i class="nav-icon fas fa-users"></i>
                 <p>
-                    {{__('tag.posts')}}
+                    {{__('tag.permissions')}}
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{route('admin.posts.index')}}" class="nav-link {{ setActiveAdminRoute('admin.posts.index') }}">
+                    <a href="{{route('admin.permissions.index')}}" class="nav-link {{ setActiveAdminRoute('admin.permissions.index') }}">
                         <i class="fas fa-th-list nav-icon"></i>
-                        <p>{{__('tag.posts_list')}}</p>
+                        <p>{{__('tag.permissions_list')}}</p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    @if( request()->is('admin/posts/*') )
-                        <a href="{{ route('admin.posts.index', '#create') }}" class="nav-link">
-                            <i class="fas fa-feather-alt nav-icon"></i>
-                            <p>{{__('tag.write_post')}}</p>
-                        </a>
-                    @else
-                        <a href="javascript:void(0);" class="nav-link"
-                           data-toggle="modal" data-target="#modal-default">
-                            <i class="fas fa-feather-alt nav-icon"></i>
-                            <p>{{__('tag.write_post')}}</p>
-                        </a>
-                    @endif
                 </li>
             </ul>
         </li>
-        <!-- /.Blog -->
-        <li class="nav-header">{{__('tag.users')}}</li>
+        <!-- /.permissions -->
+        @endcan
+        @can('view', new Spatie\Permission\Models\Role)
+        <li class="nav-item {{ setOpenAdminMenuRoute(['admin.roles.index', 'admin.roles.create', 'admin.roles.edit']) }}">
+            <a href="javascript:void(0)" class="nav-link {{ setActiveAdminRoute(['admin.roles.index', 'admin.roles.create', 'admin.roles.edit']) }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    {{__('tag.roles')}}
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('admin.roles.index')}}" class="nav-link {{ setActiveAdminRoute('admin.roles.index') }}">
+                        <i class="fas fa-th-list nav-icon"></i>
+                        <p>{{__('tag.roles_list')}}</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.roles.create') }}" class="nav-link {{ setActiveAdminRoute('admin.roles.create') }}">
+                        <i class="fas fa-feather-alt nav-icon"></i>
+                        <p>{{__('tag.register_role')}}</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- /.roles -->
+        @endcan
+        @can('view', new App\Models\User)
         <li class="nav-item {{ setOpenAdminMenuRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) }}">
             <a href="javascript:void(0)" class="nav-link {{ setActiveAdminRoute(['admin.users.index', 'admin.users.create', 'admin.users.edit']) }}">
                 <i class="nav-icon fas fa-users"></i>
@@ -73,6 +86,42 @@
             </ul>
         </li>
         <!-- /.Users -->
+        @endcan
+        <li class="nav-header">{{__('tag.blog')}}</li>
+        <li class="nav-item {{ setOpenAdminMenuRoute(['admin.posts.index']) }}">
+            <a href="javascript:void(0)" class="nav-link {{ setActiveAdminRoute(['admin.posts.index']) }}">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                    {{__('tag.posts')}}
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('admin.posts.index')}}" class="nav-link {{ setActiveAdminRoute('admin.posts.index') }}">
+                        <i class="fas fa-th-list nav-icon"></i>
+                        <p>{{__('tag.posts_list')}}</p>
+                    </a>
+                </li>
+                @can('create', new App\Models\Post)
+                    <li class="nav-item">
+                        @if( request()->is('admin/posts/*') )
+                            <a href="{{ route('admin.posts.index', '#create') }}" class="nav-link">
+                                <i class="fas fa-feather-alt nav-icon"></i>
+                                <p>{{__('tag.write_post')}}</p>
+                            </a>
+                        @else
+                            <a href="javascript:void(0);" class="nav-link"
+                               data-toggle="modal" data-target="#modal-default">
+                                <i class="fas fa-feather-alt nav-icon"></i>
+                                <p>{{__('tag.write_post')}}</p>
+                            </a>
+                        @endif
+                    </li>
+                @endcan
+            </ul>
+        </li>
+        <!-- /.Blog -->
         <li class="nav-header">{{__('tag.miscellaneous')}}</li>
         <li class="nav-item">
             <a href="javascript:void(0)" class="nav-link">
