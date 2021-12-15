@@ -29,10 +29,13 @@ use App\Http\Controllers\CategoriesController;
 use App\Mail\LoginCredentials;
 use App\Models\User;
 
-Route::get('/', [BlogController::class, 'home'])->name('home');
+//Route::get('/', [BlogController::class, 'home'])->name('home');
 Route::get('/about', [BlogController::class, 'about'])->name('about');
 Route::get('/archive', [BlogController::class, 'archive'])->name('archive');
 Route::get('/contact', [BlogController::class, 'contact'])->name('contact');
+
+// for spa
+Route::get('/', BlogController::class)->name('home');
 
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog/tags/{tag}', TagsController::class)->name('blog.tags.show');
