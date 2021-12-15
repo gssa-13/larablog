@@ -1,16 +1,116 @@
-@extends('layouts.blog')
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>@yield('title', config('app.name')." | Blog")</title>
+    <meta name="description" content="@yield('meta-description', 'Este es el blog de '.config('app.name'))"/>
+    <meta charset="utf-8"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body class="is-preload">
+<div id="app">
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-@section('content')
-    <!-- Main -->
-    <div id="main">
-        {{--
-        @if( isset($title) )
-            <h3>{{ $title }}</h3>
-        @endif
-        --}}
-        <br>
+        <!-- Header -->
+        <header id="header">
+            <h1>
+                <router-link to="/home">{{ config('app.name') }}</router-link>
+            </h1>
+            <nav class="links">
+                <ul>
+                    <li>
+                        <router-link to="/about">{{ __('blog.about') }}</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/archive">{{ __('blog.archive') }}</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/contact">{{ __('blog.contact') }}</router-link>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="main">
+                <ul>
+                    <li class="search">
+                        <a class="fa-search" href="#search">Search</a>
+                        <form id="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </li>
+                    <li class="menu">
+                        <a class="fa-bars" href="#menu">Menu</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- /. Header -->
 
-        {{-- @forelse($posts as $post) --}}
+    <!-- Menu -->
+        <section id="menu">
+
+            <!-- Search -->
+            <section>
+                <form class="search" method="get" action="#">
+                    <input type="text" name="query" placeholder="Search"/>
+                </form>
+            </section>
+
+            <!-- Links -->
+            <section>
+                <ul class="links">
+                    <li>
+                        <a href="#">
+                            <h3>Lorem ipsum</h3>
+                            <p>Feugiat tempus veroeros dolor</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>Dolor sit amet</h3>
+                            <p>Sed vitae justo condimentum</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>Feugiat veroeros</h3>
+                            <p>Phasellus sed ultricies mi congue</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <h3>Etiam sed consequat</h3>
+                            <p>Porta lectus amet ultricies</p>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Actions -->
+            <section>
+                <ul class="actions stacked">
+                    <li><a href="{{route('login')}}" class="button large fit">{{__('tag.log_in')}}</a></li>
+                </ul>
+            </section>
+
+        </section>
+        <!-- Main -->
+        <div id="main">
+            {{--
+            @if( isset($title) )
+                <h3>{{ $title }}</h3>
+            @endif
+            --}}
+            <br>
+
+            {{-- @forelse($posts as $post) --}}
         <!-- Post -->
             <article class="post">
                 {{-- @include('blog.partials.header-post') --}}
@@ -26,6 +126,7 @@
                 --}}
                 <br>
                 <p>{{-- $post->excerpt --}}</p>
+                <router-view></router-view>
                 <footer>
                     {{--
                     <ul class="actions">
@@ -40,7 +141,7 @@
                 </footer>
             </article>
 
-        {{-- @empty --}}
+            {{-- @empty --}}
             <article class="post">
                 <header>
                     <div class="title">
@@ -55,7 +156,7 @@
                             <span class="name">System</span>
                         </a>
                         <a href="javascript:void(0);" class="author">
-                            <img src="/images/avatar.jpg" alt="" />
+                            <img src="/images/avatar.jpg" alt=""/>
                         </a>
                     </div>
                 </header>
@@ -63,151 +164,26 @@
                 Aun no hay publicaciones
                 <footer></footer>
             </article>
-        {{-- @endforelse --}}
+            {{-- @endforelse --}}
 
-    <!-- Pagination -->
-        {{-- $posts->appends( request()->all() )->links() --}}
+        <!-- Pagination -->
+            {{-- $posts->appends( request()->all() )->links() --}}
+
+        </div>
 
     </div>
+</div>
 
-    <!-- Sidebar -->
-    {{-- <section id="sidebar">
+<!-- Scripts -->
+<script src="{{ mix('/js/app.js') }}"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
-        <!-- Intro -->
-        <section id="intro">
-            <a href="javascript:void(0);" class="logo"><img src="/images/logo.jpg" alt=""/></a>
-            <header>
-                <h2>Future Imperfect</h2>
-                <p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a></p>
-            </header>
-        </section>
+</body>
+</html>
 
-        <!-- Mini Posts -->
-        <section>
-            <div class="mini-posts">
 
-                <!-- Mini Post -->
-                <article class="mini-post">
-                    <header>
-                        <h3><a href="{{ route('blog.show', $post) }}">Vitae sed condimentum</a></h3>
-                        <time class="published" datetime="2022-01-01">October 20, 2015</time>
-                        <a href="javascript:void(0);" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-                    </header>
-                    <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic04.jpg" alt="" /></a>
-                </article>
-
-                <!-- Mini Post -->
-                <article class="mini-post">
-                    <header>
-                        <h3><a href="{{ route('blog.show', $post) }}">Rutrum neque accumsan</a></h3>
-                        <time class="published" datetime="2022-01-19">October 19, 2015</time>
-                        <a href="javascript:void(0);" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-                    </header>
-                    <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic05.jpg" alt="" /></a>
-                </article>
-
-                <!-- Mini Post -->
-                <article class="mini-post">
-                    <header>
-                        <h3><a href="{{ route('blog.show', $post) }}">Odio congue mattis</a></h3>
-                        <time class="published" datetime="2022-01-18">October 18, 2015</time>
-                        <a href="javascript:void(0);" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-                    </header>
-                    <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic06.jpg" alt="" /></a>
-                </article>
-
-                <!-- Mini Post -->
-                <article class="mini-post">
-                    <header>
-                        <h3><a href="{{ route('blog.show', $post) }}">Enim nisl veroeros</a></h3>
-                        <time class="published" datetime="2022-01-17">October 17, 2015</time>
-                        <a href="javascript:void(0);" class="author"><img src="/images/avatar.jpg" alt="" /></a>
-                    </header>
-                    <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic07.jpg" alt="" /></a>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Posts List -->
-        <section>
-            <ul class="posts">
-                <li>
-                    <article>
-                        <header>
-                            <h3><a href="{{ route('blog.show', $post) }}">Lorem ipsum fermentum ut nisl vitae</a></h3>
-                            <time class="published" datetime="2022-01-01">October 20, 2015</time>
-                        </header>
-                        <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic08.jpg" alt="" /></a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <header>
-                            <h3><a href="{{ route('blog.show', $post) }}">Convallis maximus nisl mattis nunc id lorem</a></h3>
-                            <time class="published" datetime="2022-01-15">October 15, 2015</time>
-                        </header>
-                        <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic09.jpg" alt="" /></a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <header>
-                            <h3><a href="{{ route('blog.show', $post) }}">Euismod amet placerat vivamus porttitor</a></h3>
-                            <time class="published" datetime="2022-01-10">October 10, 2015</time>
-                        </header>
-                        <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic10.jpg" alt="" /></a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <header>
-                            <h3><a href="{{ route('blog.show', $post) }}">Magna enim accumsan tortor cursus ultricies</a></h3>
-                            <time class="published" datetime="2022-01-08">October 8, 2015</time>
-                        </header>
-                        <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic11.jpg" alt="" /></a>
-                    </article>
-                </li>
-                <li>
-                    <article>
-                        <header>
-                            <h3><a href="{{ route('blog.show', $post) }}">Congue ullam corper lorem ipsum dolor</a></h3>
-                            <time class="published" datetime="2022-01-06">October 7, 2015</time>
-                        </header>
-                        <a href="{{ route('blog.show', $post) }}" class="image"><img src="/images/pic12.jpg" alt="" /></a>
-                    </article>
-                </li>
-            </ul>
-        </section>
-
-        <!-- About -->
-        <section class="blurb">
-            <h2>About</h2>
-            <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
-            <ul class="actions">
-                <li><a href="javascript:void(0);" class="button">Learn More</a></li>
-            </ul>
-        </section>
-
-        <!-- Footer -->
-        <section id="footer">
-            <ul class="icons">
-                <li><a href="javascript:void(0);" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="javascript:void(0);" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                <li><a href="javascript:void(0);" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="javascript:void(0);" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
-                <li><a href="javascript:void(0);" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-            </ul>
-            <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
-        </section>
-
-    </section> --}}
-@stop
-
-@push('css_after')
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-@endpush
-
-@push('js_after')
-    <script src="/js/bootstrap.min.js"></script>
-@endpush

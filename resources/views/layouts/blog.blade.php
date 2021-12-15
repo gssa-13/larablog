@@ -16,7 +16,6 @@
     </head>
     <body class="is-preload">
         <div id="app">
-            <example-component></example-component>
             <!-- Wrapper -->
             <div id="wrapper">
 
