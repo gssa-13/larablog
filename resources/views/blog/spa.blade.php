@@ -21,18 +21,24 @@
                 <!-- Header -->
                 <header id="header">
                     <h1>
-                        <router-link to="/home">{{ config('app.name') }}</router-link>
+                        <router-link :to="{name: 'home'}">{{ config('app.name') }}</router-link>
                     </h1>
                     <nav class="links">
                         <ul>
                             <li>
-                                <router-link to="/about">{{ __('blog.about') }}</router-link>
+                                <router-link :to="{name:'about'}">
+                                    {{ __('blog.about') }}
+                                </router-link>
                             </li>
                             <li>
-                                <router-link to="/archive">{{ __('blog.archive') }}</router-link>
+                                <router-link :to="{name: 'archive'}">
+                                    {{ __('blog.archive') }}
+                                </router-link>
                             </li>
                             <li>
-                                <router-link to="/contact">{{ __('blog.contact') }}</router-link>
+                                <router-link :to="{name: 'contact'}">
+                                    {{ __('blog.contact') }}
+                                </router-link>
                             </li>
                         </ul>
                     </nav>
