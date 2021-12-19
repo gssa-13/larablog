@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -23,5 +24,14 @@ class BlogController extends Controller
         $posts = $query->paginate(10);
 
         return $posts;
+    }
+
+    public function show(Post $post)
+    {
+        if ( $post->isPublished()  || Auth::check()) {
+            return $post;
+        }
+
+        abort(404);
     }
 }

@@ -30,7 +30,9 @@
             <footer>
                 <ul class="actions">
                     <li>
-                        <a href="javascript:void(0);" class="button large">Leer mas</a>
+                        <router-link class="button large" :to="{name: 'post_show', params:{url: post.url}}">
+                            Leer mas
+                        </router-link>
                     </li>
                 </ul>
                 <ul class="stats">
