@@ -5437,6 +5437,106 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/blog/Home.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/blog/Home.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      posts: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/posts').then(function (response) {
+      _this.posts = response.data.data;
+    })["catch"](function (errors) {
+      console.log(errors);
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -23056,15 +23156,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Home_vue_vue_type_template_id_1261be84___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=1261be84& */ "./resources/js/blog/Home.vue?vue&type=template&id=1261be84&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/js/blog/Home.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 ;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Home_vue_vue_type_template_id_1261be84___WEBPACK_IMPORTED_MODULE_0__.render,
   _Home_vue_vue_type_template_id_1261be84___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
@@ -23078,6 +23180,22 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 if (false) { var api; }
 component.options.__file = "resources/js/blog/Home.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/blog/Home.vue?vue&type=script&lang=js&":
+/*!*************************************************************!*\
+  !*** ./resources/js/blog/Home.vue?vue&type=script&lang=js& ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/blog/Home.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -23518,61 +23636,198 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { attrs: { id: "main" } },
+    [
+      _c("h3", [_vm._v("Titulo")]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm._l(_vm.posts, function (post) {
+        return _c("article", { staticClass: "post" }, [
+          _c("header", [
+            _c(
+              "div",
+              { staticClass: "title" },
+              [
+                _c("h2", [
+                  _c("a", {
+                    attrs: { href: "" },
+                    domProps: { textContent: _vm._s(post.title) },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _vm._l(post.tags, function (tag) {
+                  return _c(
+                    "a",
+                    {
+                      staticStyle: { color: "inherit", "font-size": "inherit" },
+                      attrs: { href: "javascript:void(0);" },
+                    },
+                    [
+                      _vm._v(
+                        "\n                    #" +
+                          _vm._s(tag.name) +
+                          "\n                "
+                      ),
+                    ]
+                  )
+                }),
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "meta" }, [
+              _c("time", {
+                staticClass: "published",
+                attrs: { datetime: "2015-11-01" },
+                domProps: { textContent: _vm._s(post.published_date) },
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "author",
+                  attrs: { href: "javascript:void(0);" },
+                },
+                [
+                  _c("span", {
+                    staticClass: "name",
+                    domProps: { textContent: _vm._s(post.user.name) },
+                  }),
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0, true),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("p", { domProps: { textContent: _vm._s(post.excerpt) } }),
+          _vm._v(" "),
+          _c("footer", [
+            _vm._m(1, true),
+            _vm._v(" "),
+            _c("ul", { staticClass: "stats" }, [
+              _c("li", [
+                _c("a", {
+                  staticStyle: { color: "inherit", "font-size": "inherit" },
+                  attrs: { href: "javascript:void(0)" },
+                  domProps: { textContent: _vm._s(post.category.name) },
+                }),
+              ]),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _vm._m(3, true),
+            ]),
+          ]),
+        ])
+      }),
+      _vm._v(" "),
+      !_vm.posts.length
+        ? _c("article", { staticClass: "post" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v("\n        Aun no hay publicaciones\n        "),
+            _c("footer"),
+          ])
+        : _vm._e(),
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "main" } }, [
-      _c("h3", [_vm._v("Titulo")]),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("article", { staticClass: "post" }, [
+    return _c(
+      "a",
+      { staticClass: "author", attrs: { href: "javascript:void(0);" } },
+      [_c("img", { attrs: { src: "/images/avatar.jpg", alt: "" } })]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "actions" }, [
+      _c("li", [
+        _c(
+          "a",
+          {
+            staticClass: "button large",
+            attrs: { href: "javascript:void(0);" },
+          },
+          [_vm._v("Leer mas")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "icon solid fa-heart",
+          attrs: { href: "javascript:void(0);" },
+        },
+        [_vm._v("28")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "icon solid fa-comment",
+          attrs: { href: "javascript:void(0);" },
+        },
+        [_vm._v("128")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", [
+      _c("div", { staticClass: "title" }, [
+        _c("h2", [_vm._v("Sin publicaciones")]),
+        _vm._v(" "),
         _c("br"),
-        _vm._v(" "),
-        _c("p", [_vm._v("Extracto")]),
-        _vm._v(" "),
-        _c("footer", [
-          _c("ul", { staticClass: "actions" }, [
-            _c("li", [_c("a", { attrs: { href: "" } })]),
-          ]),
-        ]),
       ]),
       _vm._v(" "),
-      _c("article", { staticClass: "post" }, [
-        _c("header", [
-          _c("div", { staticClass: "title" }, [
-            _c("h2", [_vm._v("Sin publicaciones")]),
-            _vm._v(" "),
-            _c("br"),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "meta" }, [
-            _c("time", {
-              staticClass: "published",
-              attrs: { datetime: "2015-11-01" },
-            }),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "author", attrs: { href: "javascript:void(0);" } },
-              [_c("span", { staticClass: "name" }, [_vm._v("System")])]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "author", attrs: { href: "javascript:void(0);" } },
-              [_c("img", { attrs: { src: "", alt: "" } })]
-            ),
-          ]),
-        ]),
+      _c("div", { staticClass: "meta" }, [
+        _c("time", {
+          staticClass: "published",
+          attrs: { datetime: "2015-11-01" },
+        }),
         _vm._v(" "),
-        _c("br"),
-        _vm._v("\n        Aun no hay publicaciones\n        "),
-        _c("footer"),
+        _c(
+          "a",
+          { staticClass: "author", attrs: { href: "javascript:void(0);" } },
+          [_c("span", { staticClass: "name" }, [_vm._v("System")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          { staticClass: "author", attrs: { href: "javascript:void(0);" } },
+          [_c("img", { attrs: { src: "/images/avatar.jpg", alt: "" } })]
+        ),
       ]),
     ])
   },

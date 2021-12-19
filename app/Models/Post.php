@@ -18,6 +18,13 @@ class Post extends Model
 
     protected  $dates = ['published_at'];
 
+    protected $appends = ['published_date'];
+
+    public function  getPublishedDateAttribute()
+    {
+        return optional($this->published_at)->diffForHumans();
+    }
+
     public function getRouteKeyName()
     {
         return 'url';
