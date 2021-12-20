@@ -29,7 +29,7 @@ class BlogController extends Controller
     public function show(Post $post)
     {
         if ( $post->isPublished()  || Auth::check()) {
-            return $post;
+            return $post->load('user', 'category', 'tags', 'photos');
         }
 
         abort(404);

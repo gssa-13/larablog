@@ -19,43 +19,7 @@
             <!-- Wrapper -->
             <div id="wrapper">
                 <!-- Header -->
-                <header id="header">
-                    <h1>
-                        <router-link :to="{name: 'home'}">{{ config('app.name') }}</router-link>
-                    </h1>
-                    <nav class="links">
-                        <ul>
-                            <li>
-                                <router-link :to="{name:'about'}">
-                                    {{ __('blog.about') }}
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{name: 'archive'}">
-                                    {{ __('blog.archive') }}
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{name: 'contact'}">
-                                    {{ __('blog.contact') }}
-                                </router-link>
-                            </li>
-                        </ul>
-                    </nav>
-                    <nav class="main">
-                        <ul>
-                            <li class="search">
-                                <a class="fa-search" href="#search">Search</a>
-                                <form id="search" method="get" action="#">
-                                    <input type="text" name="query" placeholder="Search" />
-                                </form>
-                            </li>
-                            <li class="menu">
-                                <a class="fa-bars" href="#menu">Menu</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </header>
+                <navigation-bar></navigation-bar>
                 <!-- /. Header -->
                 <!-- Menu -->
                 <section id="menu">
@@ -102,7 +66,6 @@
                     </section>
                 </section>
                 <router-view></router-view>
-
             </div>
         </div>
 
