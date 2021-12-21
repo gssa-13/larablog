@@ -5453,6 +5453,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['category'],
   data: function data() {
     return {
       posts: []
@@ -5461,7 +5462,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/api/categories/".concat(this.$route.params.category)).then(function (response) {
+    axios.get("/api/categories/".concat(this.category)).then(function (response) {
       _this.posts = response.data.data;
     })["catch"](function (errors) {
       console.log(errors);
@@ -5527,6 +5528,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['url'],
   data: function data() {
     return {
       post: {
@@ -5538,7 +5540,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/api/blog/".concat(this.$route.params.url)).then(function (response) {
+    axios.get("/api/blog/".concat(this.url)).then(function (response) {
       _this.post = response.data;
     })["catch"](function (error) {
       console.log(error.response.data);
@@ -5564,6 +5566,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['tag'],
   data: function data() {
     return {
       posts: []
@@ -5572,7 +5575,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/api/tags/".concat(this.$route.params.tag)).then(function (response) {
+    axios.get("/api/tags/".concat(this.tag)).then(function (response) {
       _this.posts = response.data.data;
     })["catch"](function (errors) {
       console.log(errors);
@@ -5841,15 +5844,18 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
   }, {
     path: '/blog/:url',
     name: 'post_show',
-    component: (__webpack_require__(/*! ./blog/Post.vue */ "./resources/js/blog/Post.vue")["default"])
+    component: (__webpack_require__(/*! ./blog/Post.vue */ "./resources/js/blog/Post.vue")["default"]),
+    props: true
   }, {
     path: '/categories/:category',
     name: 'category_posts',
-    component: (__webpack_require__(/*! ./blog/CategoryPost.vue */ "./resources/js/blog/CategoryPost.vue")["default"])
+    component: (__webpack_require__(/*! ./blog/CategoryPost.vue */ "./resources/js/blog/CategoryPost.vue")["default"]),
+    props: true
   }, {
     path: '/tags/:tag',
     name: 'tag_posts',
-    component: (__webpack_require__(/*! ./blog/TagPost.vue */ "./resources/js/blog/TagPost.vue")["default"])
+    component: (__webpack_require__(/*! ./blog/TagPost.vue */ "./resources/js/blog/TagPost.vue")["default"]),
+    props: true
   }, {
     path: '*',
     component: (__webpack_require__(/*! ./blog/404.vue */ "./resources/js/blog/404.vue")["default"])

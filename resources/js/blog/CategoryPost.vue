@@ -4,13 +4,14 @@
 
 <script>
 export default {
+    props: ['category'],
     data(){
         return {
             posts: []
         }
     },
     mounted() {
-        axios.get(`/api/categories/${this.$route.params.category}`)
+        axios.get(`/api/categories/${this.category}`)
             .then(response => {
                 this.posts = response.data.data;
             })
