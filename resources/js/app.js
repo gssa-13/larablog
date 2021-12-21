@@ -12,6 +12,8 @@ Vue.component('posts-list', require('./components/blog/PostsList.vue').default);
 Vue.component('post-list-item', require('./components/blog/PostListItem.vue').default);
 Vue.component('post-header', require('./components/blog/PostHeader.vue').default);
 Vue.component('post-footer', require('./components/blog/PostFooter.vue').default);
+Vue.component('category-link', require('./components/blog/CategoryLink.vue').default);
+Vue.component('post-link', require('./components/blog/PostLink.vue').default);
 
 // Initialize Vue
 const app = new Vue({

@@ -24,57 +24,37 @@
                     <div class="col-6 col-12-medium">
                         <h3>Authors</h3>
                         <ul>
-                            <!--
-                            @foreach($authors as $author)
-                            <li>{{ $author->name }}</li>
-                            @endforeach
-                            -->
+                            <li v-for="author in authors" v-text="author.name"></li>
                         </ul>
                         <br>
                         <br>
                         <h3>Categories</h3>
                         <ul class="alt">
-                            <!--
-                            @foreach($categories as $category)
-                            <li>
-                                <a href="{{ route('blog.categories.show', $category) }}">
-                                    {{ $category->name }}
-                                </a>
+                            <li v-for="category in categories">
+                                <category-link :category="category"/>
                             </li>
-                            @endforeach-->
                         </ul>
                     </div>
                     <div class="col-6 col-12-medium">
                         <h3>Posts</h3>
                         <ol>
-                            <!--
-                            @foreach($posts as $post)
-                            <li>
-                                <a href="{{ route('blog.show', $post) }}">
-                                    {{ $post->title }}
-                                </a>
+                            <li v-for="post in posts">
+                                <post-link :post="post">{{ post.title }}</post-link>
                             </li>
-                            @endforeach
-                            -->
                         </ol>
                         <br>
                         <h3>Posts By Month</h3>
                         <ul class="dates">
-                            <!--
-                            @forelse($archives as $archive)
-                            <li class="text-capitalize">
-                                <a href="{{ route('home',['month' => $archive->month, 'year' => $archive->year]) }}">
-                                    {{ $archive->year.' '.$archive->monthname.' ('.$archive->posts.')'}}
+                            <li class="text-capitalize" v-for="archive in archives">
+                                <a href="javascript:void(0);">
+                                    {{ archive.year }} {{ archive.monthname }} ({{ archive.posts }})
                                 </a>
                             </li>
-                            @empty
-                            <li>
+                            <li v-if="! archives.length">
                                 <a href="javascript:void(0);">
                                     Aun no hay posts publicados
                                 </a>
                             </li>
-                            @endforelse
-                            -->
                         </ul>
                     </div>
                 </div>
@@ -91,3 +71,28 @@
         </article>
     </div>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                authors: [],
+                categories: [],
+                posts: [],
+                archives: []
+            }
+        },
+        mounted() {
+            axios.get('/api/archive')
+            .then(response => {
+                this.authors = response.data.authors;
+                this.categories = response.data.categories;
+                this.posts = response.data.posts;
+                this.archives = response.data.archives;
+            })
+            .catch(errors => {
+                console.log(errors);
+            });
+        }
+    }
+</script>

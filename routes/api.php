@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\Blog\TagsController;
 
 Route::get('/posts',[BlogController::class, 'home']);
 Route::get('/blog/{post}',[BlogController::class, 'show']);
+Route::get('/archive', [BlogController::class, 'archive']);
+
 Route::get('/categories/{category}', CategoriesController::class);
 Route::get('/tags/{tag}', TagsController::class);
 

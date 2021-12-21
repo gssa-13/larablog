@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,5 +35,18 @@ class BlogController extends Controller
         }
 
         abort(404);
+    }
+
+    public function archive()
+    {
+        $data = [
+            'authors' => User::latest()->take(4)->get(),
+            'categories' => Category::latest()->take(7)->get(),
+            'posts' => Post::latest('published_at')->take(5)->get(),
+            'archives' => Post::byYearAndMonth()->get()
+        ];
+
+        return $data;
+
     }
 }
