@@ -3614,3 +3614,23 @@ input, select, textarea {
 			}
 
 		}
+
+        /* VueJS  Transitions */
+        .fade-enter-active, fade-leave-active {
+            transition: opacity .4s;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+
+        .slide-fade-enter-active {
+            transition: all .3s ease;
+        }
+        .slide-fade-leave-active {
+            transition: all .3s cubic-bezier(.17, .67,.83,.67);
+        }
+        .slide-fade-enter, .slide-fade-leave-to {
+            transform: translate(800px);
+            opacity: 0;
+        }
+        /* VueJS  Transitions */

@@ -2,17 +2,17 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Blog\BlogController;
+use App\Http\Controllers\Api\Blog\CategoriesController;
+use App\Http\Controllers\Api\Blog\TagsController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::get('/posts',[BlogController::class, 'home']);
+Route::get('/blog/{post}',[BlogController::class, 'show']);
+Route::get('/archive', [BlogController::class, 'archive']);
+Route::post('/send-message', [BlogController::class, 'sendMessage']);
+
+Route::get('/categories/{category}', CategoriesController::class);
+Route::get('/tags/{tag}', TagsController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

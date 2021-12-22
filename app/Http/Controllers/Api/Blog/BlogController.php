@@ -1,22 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Blog;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
-
-    public function __invoke()
-    {
-        return view('blog.spa');
-    }
-
     public function home(Request $request)
     {
         $query = Post::published();
@@ -29,39 +23,37 @@ class BlogController extends Controller
             $query->whereMonth('published_at', $request->input('month'));
         }
 
-        $posts = $query->paginate(10);
+        $posts = $query->paginate();
 
-        return view('blog.home', compact('posts'));
+        return $posts;
     }
 
     public function show(Post $post)
     {
         if ( $post->isPublished()  || Auth::check()) {
-            return view('blog.post', compact('post'));
+            return $post->load('user', 'category', 'tags', 'photos');
         }
 
         abort(404);
     }
 
-    public function about()
-    {
-        return view('blog.about');
-    }
-
     public function archive()
     {
-        $archives = Post::byYearAndMonth()->get();
-
-        return view('blog.archive',[
+        $data = [
             'authors' => User::latest()->take(4)->get(),
             'categories' => Category::latest()->take(7)->get(),
             'posts' => Post::latest('published_at')->take(5)->get(),
-            'archives' => $archives
-        ]);
+            'archives' => Post::byYearAndMonth()->get()
+        ];
+
+        return $data;
+
     }
 
-    public function contact()
+    public function sendMessage(Request $request)
     {
-        return view('blog.contact');
+        return response()->json([
+            'statuts' => 'ok'
+        ]);
     }
 }
