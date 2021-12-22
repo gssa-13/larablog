@@ -6,9 +6,7 @@
             </li>
         </ul>
         <ul class="stats">
-            <li>
-                <category-link :category="post.category"/>
-            </li>
+            <li> <category-link :category="post.category"/> </li>
             <li><a href="javascript:void(0);" class="icon solid fa-heart">28</a></li>
             <li><a href="javascript:void(0);" class="icon solid fa-comment">128</a></li>
         </ul>

@@ -1,9 +1,7 @@
 <template>
     <header>
         <div class="title">
-            <h2>
-                <a v-text="post.title"></a>
-            </h2>
+            <h2> <a v-text="post.title"></a> </h2>
             <br>
             <router-link class="mr-1" style="color: inherit; font-size: inherit;"
                 :to="{name: 'tag_posts', params: { tag: tag.url}}" :key="post.id+'-'+tag.id"

@@ -23,7 +23,7 @@ class BlogController extends Controller
             $query->whereMonth('published_at', $request->input('month'));
         }
 
-        $posts = $query->paginate(10);
+        $posts = $query->paginate();
 
         return $posts;
     }

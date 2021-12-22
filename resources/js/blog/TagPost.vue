@@ -2,22 +2,13 @@
     <posts-list :posts="posts"></posts-list>
 </template>
 
+<template>
+    <paginator :url="`/api/tags/${this.tag}`" component-name="posts-list" />
+</template>
+
+
 <script>
 export default {
-    props: ['tag'],
-    data(){
-        return {
-            posts: []
-        }
-    },
-    mounted() {
-        axios.get(`/api/tags/${this.tag}`)
-        .then(response => {
-            this.posts = response.data.data;
-        })
-        .catch(errors => {
-            console.log(errors);
-        });
-    }
+    props: ['tag']
 }
 </script>
