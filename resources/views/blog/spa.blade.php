@@ -68,8 +68,10 @@
                             </li>
                         </ul>
                     </section>
-                </section>
-                <router-view :key="$route.fullPath"></router-view>
+                </section >
+                <transition name="slide-fade" mode="out-in">
+                    <router-view :key="$route.fullPath"></router-view>
+                </transition>
             </div>
         </div>
 

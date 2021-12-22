@@ -7,6 +7,8 @@ import Vue from 'vue';
 
 import router from './routes';
 
+//require('vue2-animate/dist/vue2-animate.min.css');  comentado por falta de uso
+
 Vue.component('navigation-bar', require('./components/blog/NavigationBar.vue').default);
 Vue.component('posts-list', require('./components/blog/PostsList.vue').default);
 Vue.component('post-list-item', require('./components/blog/PostListItem.vue').default);

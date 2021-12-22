@@ -3614,3 +3614,13 @@ input, select, textarea {
 			}
 
 		}
+        .slide-fade-enter-active {
+            transition: all .3s ease;
+        }
+        .slide-fade-leave-active {
+            transition: all .3s cubic-bezier(.17, .67,.83,.67);
+        }
+        .slide-fade-enter, .slide-fade-leave-to {
+            transform: translate(800px);
+            opacity: 0;
+        }

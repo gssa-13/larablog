@@ -5933,6 +5933,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 
+ //require('vue2-animate/dist/vue2-animate.min.css');  comentado por falta de uso
 
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('navigation-bar', (__webpack_require__(/*! ./components/blog/NavigationBar.vue */ "./resources/js/components/blog/NavigationBar.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('posts-list', (__webpack_require__(/*! ./components/blog/PostsList.vue */ "./resources/js/components/blog/PostsList.vue")["default"]));
