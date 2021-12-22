@@ -18,6 +18,7 @@ Vue.component('category-link', require('./components/blog/CategoryLink.vue').def
 Vue.component('post-link', require('./components/blog/PostLink.vue').default);
 Vue.component('pagination-link', require('./components/blog/PaginationLinks.vue').default);
 Vue.component('paginator', require('./components/blog/Paginator.vue').default);
+Vue.component('contact-form', require('./components/blog/ContactForm.vue').default);
 
 // Initialize Vue
 const app = new Vue({

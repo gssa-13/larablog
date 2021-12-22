@@ -49,4 +49,11 @@ class BlogController extends Controller
         return $data;
 
     }
+
+    public function sendMessage(Request $request)
+    {
+        return response()->json([
+            'statuts' => 'ok'
+        ]);
+    }
 }
